@@ -121,4 +121,5 @@ body {
 .info-block-value {
   text-align: center;
   font-weight: 900;
+  margin-left: 15px;
 }
