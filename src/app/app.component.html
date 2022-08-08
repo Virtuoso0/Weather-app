@@ -1,47 +1,82 @@
 <div class="container">
-  <div class="upper-data">
-    <img src="../assets/day.png" alt="day-image" />
-    <!-- <img src="../assets/night.png" alt="night-image" /> -->
+  <div class="data-container" *ngIf="weatherData">
+    <div class="upper-data">
+      <div class="select">
+        <mat-form-field appearance="fill">
+          <mat-label>City</mat-label>
+          <mat-select
+            [(value)]="selected"
+            (selectionChange)="changeCity($event)"
+          >
+            <mat-option value="seattle,wa">Seattle</mat-option>
+            <mat-option value="new+york,ny">New York</mat-option>
+            <mat-option value="toronto,on">Toronto</mat-option>
+            <mat-option value="guangzhou,gd">Guangzhou</mat-option>
+            <mat-option value="paris,fr">Paris</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <img
+        src="../assets/day.png"
+        alt="day-image"
+        *ngIf="weatherData.response.ob.isDay == true"
+      />
+      <img
+        src="../assets/night.png"
+        alt="night-image"
+        *ngIf="weatherData.response.ob.isDay == false"
+      />
 
-    <div class="weather-data">
-      <div class="location">Kraków</div>
-      <div class="temperature">{{ 14.4 | number: "1.0-0" }}°C</div>
+      <div class="weather-data">
+        <div class="location">TODO</div>
+        <div class="temperature">
+          {{ weatherData.response.ob.tempC | number: "1.0-0" }}°C
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="lower-data">
-    <div class="more-info-label">More Inforamtion</div>
+    <div class="lower-data">
+      <div class="more-info-label">More Inforamtion</div>
 
-    <div class="more-info-container">
-      <div class="info-block">
-        <div class="info-block-label">
-          <img src="../assets/temp.png" alt="temperature" />
-          <span>temp</span>
+      <div class="more-info-container">
+        <div class="info-block">
+          <div class="info-block-label">
+            <img src="../assets/temp.png" alt="temperature" />
+            <span>temp</span>
+          </div>
+          <div class="info-block-value">
+            {{ weatherData.response.ob.tempC | number: "1.0-0" }}°C
+          </div>
         </div>
-        <div class="info-block-value">10°C</div>
-      </div>
 
-      <div class="info-block">
-        <div class="info-block-label">
-          <img src="../assets/pressure.png" alt="pressure" />
-          <span>pressure</span>
+        <div class="info-block">
+          <div class="info-block-label">
+            <img src="../assets/pressure.png" alt="pressure" />
+            <span>pressure</span>
+          </div>
+          <div class="info-block-value">
+            {{ weatherData.response.ob.pressureMB }}<br />hPa
+          </div>
         </div>
-        <div class="info-block-value">1014<br />hPa</div>
-      </div>
 
-      <div class="info-block">
-        <div class="info-block-label">
-          <img src="../assets/humidity.png" alt="humidity" />
-          <span>humidity</span>
+        <div class="info-block">
+          <div class="info-block-label">
+            <img src="../assets/humidity.png" alt="humidity" />
+            <span>humidity</span>
+          </div>
+          <div class="info-block-value">
+            {{ weatherData.response.ob.humidity }}%
+          </div>
         </div>
-        <div class="info-block-value">84%</div>
-      </div>
 
-      <div class="info-block">
-        <div class="info-block-label">
-          <img src="../assets/wind.png" alt="wind" />
-          <span>wind</span>
+        <div class="info-block">
+          <div class="info-block-label">
+            <img src="../assets/wind.png" alt="wind" />
+            <span>wind</span>
+          </div>
+          <div class="info-block-value">
+            {{ weatherData.response.ob.windKPH }}<br />km/h
+          </div>
         </div>
-        <div class="info-block-value">70<br />km/h</div>
       </div>
     </div>
   </div>
