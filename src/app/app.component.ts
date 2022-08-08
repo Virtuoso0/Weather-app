@@ -13,6 +13,7 @@ export class AppComponent implements OnInit {
   constructor(private weatherService: WeatherService) {}
 
   weatherData?: WeatherData;
+  city?: string;
 
   ngOnInit(): void {
     this.weatherService.getWeatherData(this.selected).subscribe((res) => {

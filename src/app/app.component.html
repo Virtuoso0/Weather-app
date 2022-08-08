@@ -28,7 +28,8 @@
       />
 
       <div class="weather-data">
-        <div class="location">TODO</div>
+        <div class="location" *ngIf="!city">Seattle</div>
+        <div class="location" *ngIf="city">{{ city }}</div>
         <div class="temperature">
           {{ weatherData.response.ob.tempC | number: "1.0-0" }}°C
         </div>
