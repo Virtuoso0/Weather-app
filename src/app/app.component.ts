@@ -21,9 +21,36 @@ export class AppComponent implements OnInit {
     });
   }
 
-  changeCity(cityCode: any) {
+  changeCity(cityCode: any): void {
     this.weatherService.getWeatherData(cityCode.value).subscribe((res) => {
       this.weatherData = res;
+      this.city = this.translateCityCode(cityCode.value);
     });
+  }
+
+  translateCityCode(cityCode: any): string {
+    switch (cityCode) {
+      case 'seattle,wa': {
+        return 'Seattle';
+        break;
+      }
+      case 'new+york,ny': {
+        return 'New york';
+        break;
+      }
+      case 'toronto,on': {
+        return 'Toronto';
+        break;
+      }
+      case 'guangzhou,gd': {
+        return 'Guangzhou';
+        break;
+      }
+      case 'paris,fr': {
+        return 'Paris';
+        break;
+      }
+    }
+    return '';
   }
 }
